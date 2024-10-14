@@ -1,15 +1,15 @@
 import { defineStore } from 'pinia'
 import UserServiceApi from '../services/user.service'
-
+import Cookies from 'vue-cookies'
 export const useUserStore = defineStore('user', {
-  state: () => {
-    return {
-      userList: null,
-      deletedUser: null
-    }
-  },
+  state: () => ({
+    userList: null,
+    deletedUser: null,
+    user: null
+  }),
   getters: {
-    users: (state) => state.userList
+    users: (state) => state.userList,
+    user: (state) => state.user
   },
   actions: {
     async getUsersAction() {
@@ -30,6 +30,33 @@ export const useUserStore = defineStore('user', {
       } catch (err) {
         console.error('Lỗi xóa sách:', err.message)
       }
+    },
+    async fetchUser(force = false) {
+      if (!(this.user === null || force)) throw new Error('Faild to fetch user')
+      try {
+        const userId = Cookies.get('userId')
+        if (!userId) throw new Error('User infor not found in cookies')
+
+        const res = await UserServiceApi.getUser(userId)
+        if (!res || !res.data) {
+          throw new Error('Failed to fetch user: Invalid response from server')
+        }
+        console.log('User fetched successfully:', res.data)
+        this.$patch({
+          user: res.data
+        })
+        return res.data
+      } catch (error) {
+        console.log(error)
+        throw error
+      }
+    },
+    async isAdmin() {
+      await this.fetchUser()
+      if (this.user == null) {
+        return false
+      }
+      return this.user.role === 'admin'
     }
   }
 })

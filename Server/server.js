@@ -21,10 +21,16 @@ const publicPathDirectory = path.join(__dirname, "public");
 app.use("/public", express.static(publicPathDirectory));
 
 //
+// app.get("/", (req, res) => {
+//   res.send(config.db.uri);
+// });
 app.get("/", (req, res) => {
-  res.send(config.db.uri);
+  res.json({
+    code: 0,
+    msg: "OK",
+    data: "hello world",
+  });
 });
-
 // function run server
 const runServer = async () => {
   try {

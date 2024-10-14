@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 
-const authorize = (arrayType) => async (req, res, next) => {
+const authorize = (arrRole) => async (req, res, next) => {
   const { user } = req;
   try {
-    if (arrayType.findIndex((e) => e === user.type) > -1) {
+    if (arrRole.findIndex((role) => role === user.role) > -1) {
       next();
     } else {
       res.status(403).send("Bạn KHÔNG CÓ QUYỀN thực thi");

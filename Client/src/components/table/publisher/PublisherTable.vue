@@ -28,7 +28,7 @@
   <Teleport to="#app">
     <main-modal :isOpen="isOpenDetail" :handleClose="handleClose">
       <template #publisherDetail>
-        <publish-detail :publisher="selectedPublisher"></publish-detail>
+        <publisher-detail :publisher="selectedPublisher"></publisher-detail>
       </template>
     </main-modal>
     <main-modal :isOpen="isOpenEdit" :handleClose="handleClose">
@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import PublishDetail from './PublisherDetail.vue'
+import PublisherDetail from './PublisherDetail.vue'
 import PublisherEdit from './PublisherEdit.vue'
 import { reactive, ref } from 'vue'
 
@@ -48,6 +48,7 @@ defineProps({
   publisher: Array,
   handleDelete: Function
 })
+
 const headers = reactive(['_Id', 'Name', 'Location', 'Established Year', 'Create At', 'Update At'])
 
 const isOpenDetail = ref(false)

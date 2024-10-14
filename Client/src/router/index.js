@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Cookies from 'vue-cookies'
+import { useUserStore } from '@/stores/user.store'
 
 const routes = [
   {
     path: '/auth',
     name: 'auth',
-    component: () => import('../views/AuthView.vue'),
     alias: '/',
+    component: () => import('../views/AuthView.vue'),
     children: [
       {
         path: '/auth/login',
@@ -24,6 +26,7 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: () => import('../views/DashboardView.vue'),
+    meta: { requiresAuth: true, requireAdmin: true },
     children: [
       {
         path: '/dashboard/users',
@@ -44,15 +47,19 @@ const routes = [
         path: '/dashboard/publishers',
         name: 'publisher-table',
         component: () => import('../views/management/PublisherView.vue')
+      },
+      {
+        path: '/dashboard/borrow',
+        name: 'borrow-book',
+        component: () => import('../views/management/TrackbookView.vue')
       }
     ]
   },
   {
     path: '/library',
-    alias: '',
     name: 'library',
     component: () => import('../views/LibraryView.vue'),
-    // meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
     children: [
       {
         path: '/library/home',
@@ -93,6 +100,38 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: routes
+})
+
+router.beforeEach(async (to, from, next) => {
+  const userStore = useUserStore()
+  const requireLogin = to.matched.some((record) => record.meta.requiresAuth)
+  const requireAdmin = to.matched.some((record) => record.meta.requiresAdmin)
+  if (requireLogin) {
+    const accessToken = Cookies.get('accessToken')
+    console.log(requireLogin)
+    if (!accessToken) {
+      next({ name: 'login' })
+    } else {
+      // If authenticated, check if admin access is required
+      if (requireAdmin) {
+        // If admin access is required, check if user is admin
+        const isAdmin = await userStore.isAdmin()
+        console.log(isAdmin)
+        // If user is admin, allow access
+        if (isAdmin) {
+          next()
+        } else {
+          // If not admin, redirect to error view
+          next({ name: 'NotFound' })
+        }
+      } else {
+        // If admin access is not required, allow access
+        next()
+      }
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

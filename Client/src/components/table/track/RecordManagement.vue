@@ -1,0 +1,45 @@
+<template>
+  <div class="wrap__management container mt-2">
+    <div class="row table__records">
+      <div class="col-12">
+        <div class="card wrap__card">
+          <div class="card-header">
+            <h4 class="card-title">Management records</h4>
+          </div>
+          <!--end card-header-->
+          <div class="card-body">
+            <div class="table-responsive">
+              <div
+                class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns"
+              >
+                <record-feature
+                  :selectedState="selectedState"
+                  @update:selectedState="updateSelectedState"
+                ></record-feature>
+                <record-table :selectedState="selectedState"></record-table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import RecordFeature from './RecordFeature.vue'
+import RecordTable from './RecordTable.vue'
+
+const selectedState = ref('All')
+const updateSelectedState = (newState) => {
+  selectedState.value = newState
+}
+</script>
+
+<style scoped>
+.wrap__card {
+  height: 60vh;
+}
+</style>

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Book = require("./Book");
-const Reader = require("./User");
+const User = require("./User");
 
 const trackBookBorrowingSchema = new mongoose.Schema({
   book: {
@@ -10,21 +10,23 @@ const trackBookBorrowingSchema = new mongoose.Schema({
   },
   reader: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Reader",
+    ref: "User",
     require: true,
   },
-  borrowDate: {
+  dateBorrowed: {
     type: Date,
     require: true,
-    default: Date.now,
   },
-  returnDate: {
+  dateReturned: {
     type: Date,
   },
-  status: {
+  dateApproved: {
+    type: Date,
+  },
+  state: {
     type: String,
-    enum: ["pending", "borrowed", "returned", "overdue"],
-    default: "pending",
+    enum: ["Order", "Waiting", "Approved"],
+    default: "Order",
   },
 });
 

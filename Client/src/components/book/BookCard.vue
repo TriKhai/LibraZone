@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import BorrowBook from './BorrowBook.vue'
+import BorrowButton from './BorrowButton.vue'
 
 const router = useRouter()
 defineProps({
@@ -28,7 +28,7 @@ const handleClickCard = (idBook) => {
           @click="handleClickCard(book._id)"
         />
       </div>
-      <borrow-book :idBook="book._id"></borrow-book>
+      <borrow-button :bookId="book._id"></borrow-button>
     </div>
   </div>
 </template>

@@ -11,7 +11,17 @@ class UserServiceApi {
       return res.data
     } catch (error) {
       console.log(error.message)
-      // throw error
+      throw error
+    }
+  }
+
+  async getUser(userId) {
+    try {
+      const res = await this.api.get(`/${userId}`)
+      return res
+    } catch (error) {
+      console.log(error)
+      throw error
     }
   }
 

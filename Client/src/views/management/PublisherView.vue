@@ -77,7 +77,7 @@ function handleDelete(id) {
 }
 </script>
 
-  <style>
+<style>
 .dataTable-pagination-list li a {
   text-decoration: none;
   color: #000444;
@@ -91,5 +91,3 @@ function handleDelete(id) {
   color: #000444;
 }
 </style>
-
-  components: { AuthorFeature },

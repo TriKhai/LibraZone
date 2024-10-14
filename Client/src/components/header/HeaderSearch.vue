@@ -6,7 +6,7 @@
           class="me-2"
           width="80px"
           height="80px"
-          src="../assets/images/logo/logo-librazone.png"
+          src="/src/assets/images/logo/logo-librazone.png"
           alt=""
         />
       </router-link>

@@ -114,6 +114,7 @@ export default {
       gender: 'Male'
     })
     const { proxy } = getCurrentInstance()
+
     const handleSubmit = async () => {
       try {
         if (user.password === user.rePassword) {
@@ -130,7 +131,7 @@ export default {
           // await storeAuth.signUpActions(reqUser)
           const result = await storeAuth.signUpActions(reqUser)
           console.log('Đăng ký thành công:', result)
-          console.log('Đăng ký thành công:')
+          // console.log('Đăng ký thành công:')
           // Sử dụng `getCurrentInstance` để lấy `proxy`
 
           proxy.$toast.add({

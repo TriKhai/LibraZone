@@ -20,9 +20,9 @@ class UserService {
     return deletedUser;
   }
 
-  async findUser(idUser) {
-    if (!idUser) throw new Error("The user's ID is require");
-    const userObjId = new mongoose.Types.ObjectId(id);
+  async findUser(userId) {
+    if (!userId) throw new Error("The user's ID is require");
+    const userObjId = new mongoose.Types.ObjectId(userId);
     const user = await models.User.findOne({ _id: userObjId });
     if (!user) {
       throw new Error("Not found any user to given id");

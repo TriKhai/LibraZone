@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const TrackBookBorrowing = require("./TrackBookBorrowing");
 
 const userSchema = new Schema({
   firstName: {
@@ -43,12 +42,6 @@ const userSchema = new Schema({
     type: String,
     require: true,
   },
-  myBook: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "TrackBookBorrowing",
-    },
-  ],
   createAt: {
     type: Date,
     default: Date.now,

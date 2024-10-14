@@ -54,8 +54,8 @@
       <li>
         <router-link
           class="nav__link"
-          :class="{ active: $route.name === 'table' }"
-          :to="{ name: 'home' }"
+          :class="{ active: $route.name === 'borrow-book' }"
+          :to="{ name: 'borrow-book' }"
         >
           <i class="bi bi-book me-2"></i> Track
         </router-link>

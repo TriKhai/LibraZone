@@ -22,6 +22,18 @@ class UserController {
       res.status(500).json({ error: "Faild to delete user" });
     }
   }
+
+  async getUser(req, res) {
+    try {
+      const userId = req.params.id;
+      const user = await UserService.findUser(userId);
+      console.log(user);
+      res.status(200).send(user);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
 }
 
 // const createUser = async (req, res) => {

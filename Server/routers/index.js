@@ -4,6 +4,7 @@ const bookRouter = require("./book.router");
 const authorRouter = require("./author.router");
 const publisherRouter = require("./publisher.router");
 const authRouter = require("./auth.router");
+const trackRouter = require("./track.router");
 const router = express.Router();
 
 router.use("/users", userRouter);
@@ -11,5 +12,6 @@ router.use("/books", bookRouter);
 router.use("/author", authorRouter);
 router.use("/publisher", publisherRouter);
 router.use("/auth", authRouter);
+router.use("/borrow", trackRouter);
 
 module.exports = router;
