@@ -16,11 +16,17 @@ class TrackBookController {
   async confirmRecord(req, res) {
     try {
       const idTrackBook = req.params.id;
-      const confirmRecord = await TrackBookService.confirmBook(idTrackBook);
+      const { quantity } = req.body;
+      console.log("quantity", quantity);
+      const confirmRecord = await TrackBookService.confirmBook(
+        idTrackBook,
+        quantity
+      );
       console.log(confirmRecord);
       res.status(200).send(confirmRecord);
     } catch (error) {
       console.log(error);
+      res.status(500).send(error);
     }
   }
 
@@ -36,6 +42,17 @@ class TrackBookController {
   }
 
   async confirmReturn(req, res) {
+    try {
+      const recordID = req.params.id;
+      const deletedRecord = await TrackBookService.delete(recordID);
+      res.status(200).send(deletedRecord);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  }
+
+  async cancelRecord(req, res) {
     try {
       const recordID = req.params.id;
       const deletedRecord = await TrackBookService.delete(recordID);

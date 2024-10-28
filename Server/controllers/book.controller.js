@@ -35,7 +35,17 @@ class BookController {
       res.status(500).send(error);
     }
   }
-
+  async searchBook(req, res) {
+    const { keyWord } = req.query;
+    console.log("search book", keyWord);
+    try {
+      const result = await BookService.searchBookWord(keyWord);
+      res.status(200).send(result);
+    } catch (error) {
+      console.error("Lỗi khi tìm kiếm sản phẩm:", error);
+      res.status(404).json({ message: "Có lỗi xảy ra khi tìm kiếm sản phẩm" });
+    }
+  }
   async deleteBook(req, res) {
     const idBook = req.params.id;
     try {

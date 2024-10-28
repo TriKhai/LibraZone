@@ -8,5 +8,6 @@ trackRouter.post("/", TrackBookController.postTrack);
 trackRouter.put("/confirm/:id", TrackBookController.confirmRecord);
 trackRouter.put("/approved/:id", TrackBookController.approveRecord);
 trackRouter.delete("/:id", TrackBookController.confirmReturn);
+trackRouter.delete("/cancel/:id", TrackBookController.cancelRecord);
 
 module.exports = trackRouter;

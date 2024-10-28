@@ -21,8 +21,8 @@ class BookService {
 
     const bookData = {
       title: bookPayload.title,
-      author: bookPayload.author,
-      publisher: bookPayload.publisher,
+      author: bookPayload.idAuthor,
+      publisher: bookPayload.idPublisher,
       genre: bookPayload.genre,
       published_date: new Date(bookPayload.published_date),
       price: parseFloat(bookPayload.price),
@@ -42,6 +42,23 @@ class BookService {
     return newBook;
   }
 
+  async searchBookWord(keyWord) {
+    // console.log("searchBookWord");
+    if (!keyWord) {
+      throw new Error("keyWord is required");
+    }
+
+    //
+    const results = await models.Book.find({
+      $or: [
+        { title: { $regex: keyWord, $options: "i" } }, // Tìm theo tên sản phẩm
+        { description: { $regex: keyWord, $options: "i" } }, // Tìm theo mô tả
+      ],
+    });
+    if (!results) throw new Error("Not found any book");
+    return results;
+  }
+
   async findAllBook() {
     const books = await models.Book.find()
       .populate("author") // Lấy chi tiết của author bằng ObjectId
@@ -54,7 +71,6 @@ class BookService {
   async findBook(idBook) {
     if (!idBook)
       throw new Error("The book's id is require and cannot be empty");
-    console.log(idBook);
     const bookObjId = new mongoose.Types.ObjectId(idBook);
     const books = await models.Book.findOne({ _id: bookObjId })
       .populate("author") // Lấy chi tiết của author bằng ObjectId

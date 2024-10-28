@@ -28,6 +28,11 @@ const trackBookBorrowingSchema = new mongoose.Schema({
     enum: ["Order", "Waiting", "Approved"],
     default: "Order",
   },
+  quantity: {
+    type: Number,
+    default: 1,
+    min: 1,
+  },
 });
 
 const TrackBookBorrowing = mongoose.model(
