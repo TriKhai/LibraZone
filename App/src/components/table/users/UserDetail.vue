@@ -11,8 +11,7 @@
           <Tabs value="0">
             <TabList>
               <Tab value="0">Overview</Tab>
-              <Tab value="1">Story</Tab>
-              <Tab value="2">My Books</Tab>
+              <Tab value="1">My Books</Tab>
             </TabList>
             <TabPanels>
               <TabPanel value="0" class="sroll__fit">
@@ -73,15 +72,8 @@
                   </tbody>
                 </table>
               </TabPanel>
+
               <TabPanel value="1" class="sroll__fit">
-                <table class="table text-start">
-                  updating...
-                  {{
-                    user.bio
-                  }}
-                </table>
-              </TabPanel>
-              <TabPanel value="2" class="sroll__fit">
                 <table class="table text-start">
                   <tbody v-if="user.myBook && user.myBook.length">
                     <tr v-for="(book, index) in user.myBook" :key="index">
@@ -90,7 +82,7 @@
                       <td></td>
                     </tr>
                   </tbody>
-                  <div v-else>Empty</div>
+                  <div v-else>Updating...</div>
                 </table>
               </TabPanel>
             </TabPanels>

@@ -1,5 +1,5 @@
-import createApiClient from './api.service'
-// import createApiClient from '@/plugins/axios'
+// import createApiClient from './api.service'
+import createApiClient from '@/plugins/axios'
 
 class UserServiceApi {
   constructor(baseUrl = '/api/v1/users') {

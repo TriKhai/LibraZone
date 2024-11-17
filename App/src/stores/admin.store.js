@@ -1,22 +1,16 @@
 import { defineStore } from 'pinia'
 import AdminServiceApi from '../services/admin.service'
 import Cookies from 'vue-cookies'
-import { ref } from 'vue'
-import { useUserStore } from './user.store'
 
-const userStore = useUserStore()
 export const useAdminStore = defineStore('admin', {
   state: () => ({
-    admin: ref(null)
+    admin: {}
   }),
   getters: {
     getAdmin: (state) => state.admin
   },
   actions: {
     async fetchAdmin() {
-      if (userStore.user.role !== 'admin') {
-        return
-      }
       try {
         const userId = Cookies.get('userId')
         if (!userId) throw new Error('User infor not found in cookies')
@@ -31,7 +25,7 @@ export const useAdminStore = defineStore('admin', {
       } catch (error) {
         console.log(error)
         this.admin = null
-        throw error
+        return
       }
     }
   }

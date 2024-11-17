@@ -26,7 +26,7 @@ const routes = [
     name: 'dashboard',
     component: () => import('../views/DashboardView.vue'),
     meta: { requiresAuth: true, requireAdmin: true },
-    redirect: '/dashboard/users',
+    redirect: '/dashboard/borrow',
     children: [
       {
         path: '/dashboard/users',

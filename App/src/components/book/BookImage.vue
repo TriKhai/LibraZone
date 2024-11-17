@@ -38,18 +38,36 @@ defineProps({
 /* Tablet styles (<= 992px) */
 @media (max-width: 992px) {
   .wrapp__image img {
-    width: 70vw;
+    height: 60vh;
+    width: auto;
+  }
+
+  .btn__borrow {
+    width: 40vw;
+    margin: auto;
   }
 }
 
 /* Mobile styles (<= 768px) */
 @media (max-width: 768px) {
+  .btn__borrow {
+    width: 52vw;
+    margin: auto;
+  }
 }
 
 /* Small mobile styles (<= 576px) */
 @media (max-width: 576px) {
+  .btn__borrow {
+    width: 90vw;
+    margin: auto;
+  }
 }
 
-@media (max-width: 290px) {
+@media (max-width: 392px) {
+  .btn__borrow {
+    width: 80vw;
+    margin: auto;
+  }
 }
 </style>

@@ -52,7 +52,7 @@
           </div>
           <div class="detail-item">
             <label>Salary: </label>
-            <span>{{ admin.salary }}</span>
+            <span>{{ formatNumber(admin.salary) }} VNĐ</span>
           </div>
         </div>
       </div>
@@ -147,11 +147,18 @@ function handleClose() {
   isOpen.value = false
 }
 
+const admin = computed(() => adminStore.getAdmin)
+
 onMounted(async () => {
-  await adminStore.fetchAdmin()
+  if (!admin.value || Object.keys(admin.value).length === 0) {
+    await adminStore.fetchAdmin()
+  }
 })
 
-const admin = computed(() => adminStore.getAdmin)
+function formatNumber(number) {
+  if (!number) return ''
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+}
 </script>
 
 

@@ -10,7 +10,7 @@
             <li
               class="nav-item btn-header-bar d-flex justify-content-center align-items-center ms-2"
             >
-              <a class="nav-link nav__link" aria-current="page" href="#"
+              <a class="nav-link nav__link" aria-current="page" href="#" @click="handleSignOut"
                 ><i class="fa fa-sign-out-alt" @click="handleSignOut"></i
               ></a>
             </li>

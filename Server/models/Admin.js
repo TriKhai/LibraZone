@@ -10,17 +10,17 @@ const adminSchema = new Schema({
   },
   position: {
     type: String,
-    // enum: [
-    //   "Librarian", // Thủ thư
-    //   "Library Assistant", // Trợ lý thư viện
-    //   "Library Manager", // Quản lý thư viện
-    //   "Cataloger", // Người phân loại
-    //   "Acquisitions Officer", // Nhân viên thu mua
-    //   "Technical Services Librarian", // Thủ thư dịch vụ kỹ thuật
-    //   "Reference Librarian", // Thủ thư tham khảo
-    //   "Children’s Librarian", // Thủ thư thiếu nhi
-    //   "Dev",
-    // ],
+    enum: [
+      "Librarian", // Thủ thư
+      "Library Assistant", // Trợ lý thư viện
+      "Library Manager", // Quản lý thư viện
+      "Cataloger", // Người phân loại
+      "Acquisitions Officer", // Nhân viên thu mua
+      "Technical Services Librarian", // Thủ thư dịch vụ kỹ thuật
+      "Reference Librarian", // Thủ thư tham khảo
+      "Children’s Librarian", // Thủ thư thiếu nhi
+      "Dev",
+    ],
   },
   salary: {
     type: Number,

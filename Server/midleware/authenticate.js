@@ -11,7 +11,6 @@ const authenticate = async (req, res, next) => {
         .json({ message: "Authorization header is missing" });
     }
 
-    // console.log(authHeader);
     const token = authHeader.split(" ")[1];
     if (!token) {
       return res.status(401).json({ message: "Token is missing" });
@@ -21,6 +20,7 @@ const authenticate = async (req, res, next) => {
     req.user = decode;
     next();
   } catch (error) {
+    console.log(error);
     if (error.name === "TokenExpiredError") {
       return res
         .status(401)

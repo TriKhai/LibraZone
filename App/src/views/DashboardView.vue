@@ -2,6 +2,15 @@
 import Toast from 'primevue/toast'
 import TheSidebar from '@/components/sidebar/TheSidebar.vue'
 import DashboardHeader from '@/components/header/DashboardHeader.vue'
+
+import { useAdminStore } from '@/stores/admin.store'
+import { onMounted } from 'vue'
+
+const adminStore = useAdminStore()
+
+onMounted(async () => {
+  await adminStore.fetchAdmin()
+})
 </script>
 
 <template>

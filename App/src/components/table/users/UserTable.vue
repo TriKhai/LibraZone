@@ -98,7 +98,6 @@ const currentPage = ref(1) // Trang hiện tại
 const totalPages = computed(() => Math.ceil(totalRecords.value / pageSize.value))
 
 const paginatedUser = computed(() => {
-  console.log(users)
   if (!users.value || users.value.length === 0) console.log('users.value: ', users.value)
   const start = (currentPage.value - 1) * pageSize.value
   const end = start + pageSize.value

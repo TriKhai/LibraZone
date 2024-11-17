@@ -26,13 +26,22 @@
       <li>
         <router-link
           class="nav__link"
+          :class="{ active: $route.name === 'borrow-book' }"
+          :to="{ name: 'borrow-book' }"
+        >
+          <i class="bi bi-book me-2"></i> Track
+        </router-link>
+      </li>
+      <li v-if="admin.position === 'Dev'">
+        <router-link
+          class="nav__link"
           :class="{ active: $route.name === 'user-table' }"
           :to="{ name: 'user-table' }"
         >
           <i class="bi bi-book me-2"></i> Users
         </router-link>
       </li>
-      <li>
+      <li v-if="admin.position === 'Dev'">
         <router-link
           class="nav__link"
           :class="{ active: $route.name === 'book-table' }"
@@ -41,7 +50,7 @@
           <i class="bi bi-book me-2"></i> Books
         </router-link>
       </li>
-      <li>
+      <li v-if="admin.position === 'Dev'">
         <router-link
           class="nav__link"
           :class="{ active: $route.name === 'author-table' }"
@@ -50,22 +59,13 @@
           <i class="bi bi-book me-2"></i> Authors
         </router-link>
       </li>
-      <li>
+      <li v-if="admin.position === 'Dev'">
         <router-link
           class="nav__link"
           :class="{ active: $route.name === 'publisher-table' }"
           :to="{ name: 'publisher-table' }"
         >
           <i class="bi bi-book me-2"></i> Publisher
-        </router-link>
-      </li>
-      <li>
-        <router-link
-          class="nav__link"
-          :class="{ active: $route.name === 'borrow-book' }"
-          :to="{ name: 'borrow-book' }"
-        >
-          <i class="bi bi-book me-2"></i> Track
         </router-link>
       </li>
     </ul>
@@ -92,6 +92,18 @@
 </template>
 
 <script setup>
+import { useAdminStore } from '@/stores/admin.store'
+import { computed, onMounted } from 'vue'
+
+const adminStore = useAdminStore()
+
+const admin = computed(() => adminStore.getAdmin)
+
+onMounted(async () => {
+  if (!admin.value || Object.keys(admin.value).length === 0) {
+    await adminStore.fetchAdmin()
+  }
+})
 </script>
 
 <style scoped>

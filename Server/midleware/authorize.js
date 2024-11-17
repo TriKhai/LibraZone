@@ -1,6 +1,6 @@
 const authorize = (arrRole) => async (req, res, next) => {
   const { user } = req;
-  console.log(user);
+  // console.log(user);
   try {
     if (arrRole.findIndex((role) => role === user.role) > -1) {
       next();
