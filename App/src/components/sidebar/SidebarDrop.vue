@@ -1,0 +1,103 @@
+<template>
+  <div>
+    <div class="navbar__body">
+      <ul class="navbar-nav me-auto">
+        <!-- <li class="nav-item d-flex justify-content-center align-items-center">
+          <router-link
+            class="nav__link w-100 text-center"
+            :class="{ active: $route.name === 'dashboard' }"
+            :to="{ name: 'dashboard' }"
+            @click="handleClose()"
+          >
+            <i class="bi bi-house-door me-2"></i> Dashboard
+          </router-link>
+        </li> -->
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <router-link
+            class="nav__link w-100 text-center"
+            :class="{ active: $route.name === 'user-table' }"
+            :to="{ name: 'user-table' }"
+            @click="handleClose()"
+          >
+            <i class="bi bi-book me-2"></i> Users
+          </router-link>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <router-link
+            class="nav__link w-100 text-center"
+            :class="{ active: $route.name === 'book-table' }"
+            :to="{ name: 'book-table' }"
+            @click="handleClose()"
+          >
+            <i class="bi bi-book me-2"></i> Books
+          </router-link>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <router-link
+            class="nav__link w-100 text-center"
+            :class="{ active: $route.name === 'author-table' }"
+            :to="{ name: 'author-table' }"
+            @click="handleClose()"
+          >
+            <i class="bi bi-book me-2"></i> Authors
+          </router-link>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <router-link
+            class="nav__link w-100 text-center"
+            :class="{ active: $route.name === 'publisher-table' }"
+            :to="{ name: 'publisher-table' }"
+            @click="handleClose()"
+          >
+            <i class="bi bi-book me-2"></i> Publisher
+          </router-link>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <router-link
+            class="nav__link w-100 text-center"
+            :class="{ active: $route.name === 'borrow-book' }"
+            :to="{ name: 'borrow-book' }"
+            @click="handleClose()"
+          >
+            <i class="bi bi-book me-2"></i> Track
+          </router-link>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script setup>
+defineProps({
+  handleClose: {
+    type: Function
+  }
+})
+</script>
+
+<style scoped>
+.navbar__body ul li:hover {
+  background-color: #ccc;
+}
+
+.active {
+  background-color: #ccc;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #000;
+  padding: 10px 0;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
