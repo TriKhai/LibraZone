@@ -41,7 +41,6 @@ class TrackServiceApi {
   }
 
   async confirm(recordId, quantity) {
-    console.log(quantity)
     try {
       const res = await this.api.put(`/confirm/${recordId}`, { quantity })
       return res.data

@@ -28,7 +28,6 @@ export const useReviewStore = defineStore('review', {
         if (err.status === 404) {
           return
         }
-        throw err
       }
     },
 
@@ -41,7 +40,6 @@ export const useReviewStore = defineStore('review', {
         if (err.status === 404) {
           return
         }
-        throw err
       }
     },
 
@@ -52,7 +50,6 @@ export const useReviewStore = defineStore('review', {
         const res = await ReviewServiceApi.createReview(payload)
         await this.fetchReviewBookAction(payload.bookID)
 
-        console.log(res.status)
         return res.status
         // this.reviewBook = res
       } catch (error) {

@@ -7,7 +7,7 @@ export const useUserStore = defineStore('user', {
   state: () => ({
     userList: null,
     deletedUser: null,
-    user: ref({}),
+    user: null,
     selected: ref(5)
   }),
   getters: {
@@ -21,7 +21,7 @@ export const useUserStore = defineStore('user', {
         this.userList = userList
         return userList
       } catch (err) {
-        console.error('Lỗi khi lấy danh sách sách:', err.message)
+        console.log('Lỗi khi lấy danh sách sách:', err.message)
       }
     },
 
@@ -31,7 +31,7 @@ export const useUserStore = defineStore('user', {
         await this.getUsersAction()
         return res.status
       } catch (err) {
-        console.error('Lỗi khi lấy danh sách sách:', err.message)
+        console.log('Lỗi khi lấy danh sách sách:', err.message)
         return err.status
       }
     },
@@ -42,18 +42,19 @@ export const useUserStore = defineStore('user', {
         await this.getUsersAction()
         this.deletedUser = res
       } catch (err) {
-        console.error('Lỗi xóa sách:', err.message)
+        console.log('Lỗi xóa sách:', err.message)
       }
     },
+
     async fetchUser(force = false) {
-      if (!(this.user === null || force)) throw new Error('Faild to fetch user')
+      if (!(this.user === null || force)) console.log('Faild to fetch user')
       try {
         const userId = Cookies.get('userId')
-        if (!userId) throw new Error('User infor not found in cookies')
+        if (!userId) console.log('User infor not found in cookies')
 
         const res = await UserServiceApi.getUser(userId)
         if (!res || !res.data) {
-          throw new Error('Failed to fetch user: Invalid response from server')
+          console.log('Failed to fetch user: Invalid response from server')
         }
 
         this.$patch({
@@ -62,11 +63,11 @@ export const useUserStore = defineStore('user', {
         return res.data
       } catch (error) {
         console.log(error)
-        throw error
       }
     },
+
     async isAdmin() {
-      await this.fetchUser()
+      await this.fetchUser(true)
       if (this.user == null) {
         return false
       }
@@ -76,7 +77,6 @@ export const useUserStore = defineStore('user', {
     async editAvatar(idUser, formData) {
       try {
         const res = await UserServiceApi.updateAvatar(idUser, formData)
-        console.log(res.status)
         if (res.status === 200) {
           const response = await UserServiceApi.getUser(idUser)
           this.$patch({
@@ -87,7 +87,7 @@ export const useUserStore = defineStore('user', {
           // alert('Failed to update avatar. Please try again.')
         }
       } catch (error) {
-        console.error('Error updating avatar:', error)
+        console.log('Error updating avatar:', error)
         // alert('An error occurred while updating avatar.')
       }
     },
@@ -108,8 +108,7 @@ export const useUserStore = defineStore('user', {
         const res = await UserServiceApi.updatePassword(userID, passwordData)
         return res
       } catch (error) {
-        console.error('Error changing password:', error)
-        throw error
+        console.log('Error changing password:', error)
       }
     },
     async deleteStore() {

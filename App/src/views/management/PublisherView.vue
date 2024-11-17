@@ -62,7 +62,6 @@ function handleDelete(id) {
       life: 3000
     })
   }
-  // console.log(res)
 }
 </script>
 

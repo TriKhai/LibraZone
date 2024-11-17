@@ -56,7 +56,7 @@ class UserServiceApi {
       })
       return res // Trả về dữ liệu nếu thành công
     } catch (error) {
-      console.error('Error updating avatar:', error.message)
+      console.log('Error updating avatar:', error.message)
       throw error // Ném lỗi để xử lý ở nơi gọi hàm
     }
   }

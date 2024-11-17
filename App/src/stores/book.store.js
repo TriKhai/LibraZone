@@ -46,11 +46,10 @@ export const useBookStore = defineStore('book', {
       try {
         this.bookList = await BookServiceApi.getAll()
       } catch (err) {
-        console.error('Lỗi khi lấy danh sách sách:', err.message)
+        console.log('Lỗi khi lấy danh sách sách:', err.message)
       }
     },
     async getBookAction(id) {
-      // console.log(id)
       try {
         const res = await BookServiceApi.get(id)
         this.bookDetail = res
@@ -78,7 +77,7 @@ export const useBookStore = defineStore('book', {
         await this.fetchBookAction()
         return res
       } catch (err) {
-        console.error('Lỗi tạo sách:', err.message)
+        console.log('Lỗi tạo sách:', err.message)
       }
     },
     async deleteBookAction(id) {
@@ -87,7 +86,7 @@ export const useBookStore = defineStore('book', {
         await this.fetchBookAction()
         return res
       } catch (err) {
-        console.error('Lỗi xóa sách:', err.message)
+        console.log('Lỗi xóa sách:', err.message)
       }
     },
     async updateBookAction(id, data) {

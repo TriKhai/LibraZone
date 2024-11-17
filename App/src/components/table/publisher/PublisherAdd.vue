@@ -97,9 +97,8 @@ const handleSubmit = async () => {
         formData.append(key, dataPublisher[key])
       }
     }
-    // console.log(formData)
     const res = await publihserAuthor.createPublisherAction(formData)
-    // console.log(res)
+
     if (res) {
       proxy?.$toast?.add({
         severity: 'contrast',
@@ -111,7 +110,7 @@ const handleSubmit = async () => {
       props.handleClose()
     }
   } catch (error) {
-    console.error('Error adding book:', error)
+    console.log('Error adding book:', error)
     alert('Failed to add publisher. Please try again.')
   }
 }

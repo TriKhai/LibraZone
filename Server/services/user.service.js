@@ -48,7 +48,11 @@ class UserService {
   }
 
   async findUser(userId) {
-    if (!userId) throw new Error("The user's ID is require");
+    if (!userId || typeof userId !== "string" || userId.length !== 24) {
+      throw new Error(
+        "Invalid userId format: The user's ID is required and must be a 24-character hex string"
+      );
+    }
     const userObjId = new mongoose.Types.ObjectId(userId);
     const user = await models.User.findOne({ _id: userObjId });
 

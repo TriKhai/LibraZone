@@ -64,9 +64,7 @@ const handleSubmit = async () => {
     for (const key in dataAuthor) {
       formData.append(key, dataAuthor[key])
     }
-    // console.log(formData)
     const res = await authorStore.updateAuthorAction(author.value._id, formData)
-    // console.log(res)
     if (res) {
       proxy?.$toast?.add({
         severity: 'contrast',
@@ -78,7 +76,7 @@ const handleSubmit = async () => {
       props.handleClose()
     }
   } catch (error) {
-    console.error('Error adding book:', error)
+    console.log('Error adding book:', error)
     alert('Failed to add book. Please try again.')
   }
 }

@@ -22,7 +22,6 @@ class AuthorServiceApi {
           'Content-Type': 'multipart/form-data' // Định nghĩa Content-Type
         }
       })
-      //   console.log(data)
       return res.data
     } catch (error) {
       console.log(error.message)

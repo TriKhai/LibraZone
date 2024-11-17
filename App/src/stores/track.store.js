@@ -45,12 +45,10 @@ export const useTrackStore = defineStore('track', {
           userId: userId,
           bookId: bookId
         }
-        console.log(payload)
         const res = await TrackServiceApi.createTrack(payload)
-        console.log(res)
+        return res
       } catch (err) {
-        console.error('Faild to create track record', err.message)
-        throw err
+        console.log('Faild to create track record', err.message)
       }
     },
     // fetch for user
@@ -63,20 +61,17 @@ export const useTrackStore = defineStore('track', {
         return bookList
       } catch (error) {
         console.log(error)
-        throw error
       }
     },
     async confirmBorrowBook(trackId, quantity) {
       try {
-        const res = await TrackServiceApi.confirm(trackId, quantity)
-        console.log(res)
+        await TrackServiceApi.confirm(trackId, quantity)
         await this.fetchBorrowedBooks()
         await this.$patch({
           record: null
         })
       } catch (error) {
         console.log(error)
-        throw error
       }
     },
     async setRecord(record) {

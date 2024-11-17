@@ -17,11 +17,10 @@ class BookServiceApi {
 
   async get(id) {
     try {
-      console.log(`Getting book with ID: ${id}`)
       const res = await this.api.get(`/${id}`)
       return res.data
     } catch (error) {
-      console.error(`Error fetching book with ID ${id}:`, error.message)
+      console.log(`Error fetching book with ID ${id}:`, error.message)
       throw error
     }
   }
@@ -29,12 +28,11 @@ class BookServiceApi {
   async getSearch(keyword) {
     try {
       if (!keyword) return
-      console.log(`Searching for: ${keyword}`)
       const encodedKeyword = encodeURIComponent(keyword) // Mã hóa keyword để tránh lỗi URL
       const res = await this.api.get(`/search/book?keyWord=${encodedKeyword}`)
       return res.data
     } catch (error) {
-      console.error('Error searching books:', error.message)
+      console.log('Error searching books:', error.message)
       throw error
     }
   }
@@ -46,7 +44,6 @@ class BookServiceApi {
           'Content-Type': 'multipart/form-data' // Định nghĩa Content-Type
         }
       })
-      console.log(data)
       return res.data
     } catch (error) {
       console.log(error.message)

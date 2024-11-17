@@ -83,16 +83,12 @@ watch(inputSearch, (newValue) => {
 const books = computed(() => bookStore.searchBooks)
 
 const handleClickCard = async (idBook) => {
-  try {
-    if (!idBook) return
-    await router.push({
-      name: 'bookDetail',
-      params: { id: idBook }
-    })
-    inputSearch.value = ''
-  } catch (error) {
-    console.error('Navigation error:', error)
-  }
+  if (!idBook) return
+  await router.push({
+    name: 'bookDetail',
+    params: { id: idBook }
+  })
+  inputSearch.value = ''
 }
 
 const handleClickSearch = async (event) => {
@@ -118,7 +114,7 @@ const handleClickSearch = async (event) => {
     // Clear search suggest
     inputSearch.value = ''
   } catch (error) {
-    console.error('Search error:', error)
+    console.log('Search error:', error)
   }
 }
 </script>

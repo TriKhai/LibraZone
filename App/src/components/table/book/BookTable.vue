@@ -122,7 +122,6 @@ const totalPages = computed(() => Math.ceil(totalRecords.value / pageSize.value)
 const paginatedBooks = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value
   const end = start + pageSize.value
-  console.log(start, end)
   return bookList.value.slice(start, end)
 })
 </script>

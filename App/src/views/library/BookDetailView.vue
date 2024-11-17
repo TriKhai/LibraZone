@@ -21,7 +21,7 @@ const fetchBookDetail = async (id) => {
     await bookStore.getBookAction(id)
   } catch (err) {
     error.value = err.message || 'Failed to load book details'
-    console.error('Error fetching book:', err)
+    console.log('Error fetching book:', err)
   } finally {
     isLoading.value = false
   }

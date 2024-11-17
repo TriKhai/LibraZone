@@ -36,7 +36,6 @@ const bookStore = useBookStore()
 // model
 const isOpenModel = ref(false)
 function handleOpenAdd() {
-  console.log('click open add')
   isOpenModel.value = true
 }
 function handleClose() {

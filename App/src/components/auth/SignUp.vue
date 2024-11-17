@@ -213,7 +213,6 @@ export default {
       }
 
       try {
-        // console.log('Hello')
         const reqUser = {
           lastName: user.firstName,
           firstName: user.lastName,
@@ -225,7 +224,6 @@ export default {
         }
         // await storeAuth.signUpActions(reqUser)
         const result = await authStore.signUpAction(reqUser)
-        console.log('Đăng ký thành công:', result)
         // Sử dụng `getCurrentInstance` để lấy `proxy`
 
         if (result === 201) {

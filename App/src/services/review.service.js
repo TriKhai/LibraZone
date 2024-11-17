@@ -40,7 +40,6 @@ class ReviewServiceApi {
 
   async getReviewBook(bookID) {
     try {
-      console.log(bookID)
       const res = await this.api.get(`/book/${bookID}`)
       return res.data
     } catch (error) {

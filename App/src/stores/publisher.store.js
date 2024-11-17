@@ -16,7 +16,7 @@ export const usePublisherStore = defineStore('publishers', {
       try {
         this.publisherList = await PublisherServiceApi.getPublishers()
       } catch (err) {
-        console.error('Lỗi khi lấy danh sách publisher', err.message)
+        console.log('Lỗi khi lấy danh sách publisher', err.message)
       }
     },
     async createPublisherAction(payload) {
@@ -25,7 +25,7 @@ export const usePublisherStore = defineStore('publishers', {
         await this.fetchPublisherAction()
         return res
       } catch (err) {
-        console.error('Lỗi tạo publisher:', err.message)
+        console.log('Lỗi tạo publisher:', err.message)
       }
     },
     async deletePublisherAction(id) {
@@ -34,7 +34,7 @@ export const usePublisherStore = defineStore('publishers', {
         await this.fetchPublisherAction()
         return res
       } catch (err) {
-        console.error('Lỗi xóa publisher:', err.message)
+        console.log('Lỗi xóa publisher:', err.message)
       }
     },
     async updatePublisherAction(id, data) {

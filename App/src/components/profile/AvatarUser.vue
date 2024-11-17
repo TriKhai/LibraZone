@@ -39,13 +39,8 @@ import { computed, ref } from 'vue'
 
 const userStore = useUserStore()
 const user = computed(() => {
-  // console.log(user)
   return userStore.getUser
 })
-
-// function handleClickUpdating() {
-//   alert('Updating...')
-// }
 
 const imagePath = ref(null)
 
@@ -71,7 +66,7 @@ const handleSubmit = async () => {
     await userStore.editAvatar(user.value._id, formData)
     // alert('Avatar updated successfully!')
   } catch (error) {
-    console.error('Error uploading avatar:', error)
+    console.log('Error uploading avatar:', error)
     alert('Failed to update avatar.')
   }
 }

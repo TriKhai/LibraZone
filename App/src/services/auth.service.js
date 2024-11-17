@@ -29,7 +29,6 @@ class AuthServiceApi {
       Cookies.set('userId', userId, { secure: true, sameSite: 'Strict' })
 
       if (user.role === 'admin') {
-        console.log(user.role === 'admin')
         router.push({ name: 'dashboard' })
       } else {
         router.push({ name: 'home' })

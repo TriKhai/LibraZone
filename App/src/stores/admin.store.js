@@ -13,11 +13,11 @@ export const useAdminStore = defineStore('admin', {
     async fetchAdmin() {
       try {
         const userId = Cookies.get('userId')
-        if (!userId) throw new Error('User infor not found in cookies')
+        if (!userId) console.log('User infor not found in cookies')
 
         const res = await AdminServiceApi.getAdmin(userId)
         if (!res || !res.data) {
-          throw new Error('Failed to fetch user: Invalid response from server')
+          console.log('Failed to fetch user: Invalid response from server')
         }
 
         this.admin = res.data
@@ -27,6 +27,20 @@ export const useAdminStore = defineStore('admin', {
         this.admin = null
         return
       }
+    },
+    async isDev() {
+      // Nếu thông tin admin chưa có, gọi fetchAdmin để lấy dữ liệu
+      if (!this.admin || Object.keys(this.admin).length === 0) {
+        await this.fetchAdmin()
+      }
+
+      // Kiểm tra nếu admin không tồn tại
+      if (!this.admin) {
+        return false
+      }
+
+      // Trả về kết quả kiểm tra vai trò
+      return this.admin.position === 'Dev'
     }
   }
 })

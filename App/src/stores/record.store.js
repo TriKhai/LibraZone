@@ -32,7 +32,6 @@ export const useRecordStore = defineStore('record', {
         })
       } catch (error) {
         console.log(error)
-        throw error
       }
     },
     async setRecord(recordID) {
@@ -55,35 +54,31 @@ export const useRecordStore = defineStore('record', {
     },
     async approve(recordID) {
       try {
-        const res = await TrackServiceApi.approve(recordID)
+        await TrackServiceApi.approve(recordID)
         await this.fetchRecords()
         await this.setRecord(recordID)
-        console.log(res)
       } catch (error) {
         console.log(error)
       }
     },
     async confirmReturn(recordID) {
       try {
-        const res = await TrackServiceApi.returnBook(recordID)
-        console.log(res)
+        await TrackServiceApi.returnBook(recordID)
         await this.fetchRecords()
         await this.$patch({
           record: null // Sử dụng $patch để cập nhật state nếu gặp lỗi proxy
         })
-        console.log(res)
       } catch (error) {
         console.log(error)
       }
     },
     async cancelRecord(recordID) {
       try {
-        const res = await TrackServiceApi.cancel(recordID)
+        await TrackServiceApi.cancel(recordID)
         await this.fetchRecords()
         await this.$patch({
           record: null
         })
-        console.log(res)
       } catch (error) {
         console.log(error)
       }

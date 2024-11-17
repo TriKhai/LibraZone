@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Cookies from 'vue-cookies'
 import { useUserStore } from '@/stores/user.store'
+import { useAdminStore } from '@/stores/admin.store'
 
 const routes = [
   {
@@ -9,7 +10,7 @@ const routes = [
     component: () => import('../views/AuthView.vue'),
     children: [
       {
-        path: '/',
+        path: '/login',
         alias: '/auth',
         name: 'login',
         component: () => import('../components/auth/LogIn.vue')
@@ -25,38 +26,45 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: () => import('../views/DashboardView.vue'),
-    meta: { requiresAuth: true, requireAdmin: true },
+    meta: { requiresAuth: true, requiresAdmin: true },
     redirect: '/dashboard/borrow',
     children: [
       {
         path: '/dashboard/users',
         name: 'user-table',
+        meta: { requiresAuth: true, requiresAdmin: true, requiresDev: true },
         component: () => import('../views/management/UsersView.vue')
       },
       {
         path: '/dashboard/books',
         name: 'book-table',
+        meta: { requiresAuth: true, requiresAdmin: true, requiresDev: true },
         component: () => import('../views/management/BooksView.vue')
       },
       {
         path: '/dashboard/authors',
         name: 'author-table',
+        meta: { requiresAuth: true, requiresAdmin: true, requiresDev: true },
         component: () => import('../views/management/AuthorView.vue')
       },
       {
         path: '/dashboard/publishers',
         name: 'publisher-table',
+        meta: { requiresAuth: true, requiresAdmin: true, requiresDev: true },
         component: () => import('../views/management/PublisherView.vue')
       },
       {
         path: '/dashboard/borrow',
         name: 'borrow-book',
+        meta: { requiresAuth: true, requiresAdmin: true },
         component: () => import('../views/management/TrackbookView.vue')
       }
     ]
   },
   {
     path: '/library',
+    alias: '/',
+    redirect: '/library/home',
     name: 'library',
     component: () => import('../views/LibraryView.vue'),
     meta: { requiresAuth: true },
@@ -65,42 +73,50 @@ const routes = [
         path: '/library/home',
         name: 'home',
         alias: '/library',
+        meta: { requiresAuth: true },
         component: () => import('../views/library/HomeView.vue')
       },
       {
         path: '/library/about-us',
         name: 'about-us',
+        meta: { requiresAuth: true },
         component: () => import('../views/library/AboutView.vue')
       },
       {
         path: '/library/books',
         name: 'books',
+        meta: { requiresAuth: true },
         component: () => import('../views/library/ListBooksView.vue')
       },
       {
         path: '/library/books/:id',
         name: 'bookDetail',
+        meta: { requiresAuth: true },
         component: () => import('../views/library/BookDetailView.vue')
       },
       {
         path: '/library/my-book',
         name: 'my-book',
+        meta: { requiresAuth: true },
         component: () => import('../views/library/MyBooksView.vue')
       },
       {
         path: '/library/profile',
         name: 'profile',
+        meta: { requiresAuth: true },
         component: () => import('../views/library/ProfileView.vue'),
         children: [
           {
             path: '/library/profile/user',
             name: 'profile-user',
+            meta: { requiresAuth: true },
             alias: '/library/profile',
             component: () => import('../components/profile/ProfileUser.vue')
           },
           {
             path: '/library/profile/history',
             name: 'profile-history',
+            meta: { requiresAuth: true },
             component: () => import('../components/profile/HistoryBorrow.vue')
           },
           {
@@ -111,6 +127,7 @@ const routes = [
           {
             path: '/library/profile/change-password',
             name: 'change-password',
+            meta: { requiresAuth: true },
             component: () => import('../components/profile/ChangePassword.vue')
           }
         ]
@@ -134,32 +151,42 @@ router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore()
   const requireLogin = to.matched.some((record) => record.meta.requiresAuth)
   const requireAdmin = to.matched.some((record) => record.meta.requiresAdmin)
-  if (requireLogin) {
-    const accessToken = Cookies.get('accessToken')
-    console.log(requireLogin)
-    if (!accessToken) {
-      next({ name: 'login' })
-    } else {
-      // If authenticated, check if admin access is required
-      if (requireAdmin) {
-        // If admin access is required, check if user is admin
-        const isAdmin = await userStore.isAdmin()
-        console.log(isAdmin)
-        // If user is admin, allow access
-        if (isAdmin) {
-          next()
-        } else {
-          // If not admin, redirect to error view
-          next({ name: 'NotFound' })
-        }
-      } else {
-        // If admin access is not required, allow access
-        next()
-      }
-    }
-  } else {
-    next()
+  const requireDev = to.matched.some((record) => record.meta.requiresDev)
+
+  // Nếu không yêu cầu đăng nhập, cho phép truy cập
+  if (!requireLogin) {
+    return next()
   }
+
+  // Kiểm tra accessToken
+  const accessToken = Cookies.get('accessToken')
+  if (!accessToken) {
+    return next({ name: 'login' })
+  }
+
+  // Kiểm tra quyền Admin
+  if (!requireAdmin) {
+    return next()
+  }
+
+  const isAdmin = await userStore.isAdmin()
+  // If user is admin, allow access
+  if (!isAdmin) {
+    return next({ name: 'notfound' })
+  }
+
+  // Kiểm tra yêu cầu quyền Dev
+  if (!requireDev) {
+    return next()
+  }
+
+  const adminStore = useAdminStore()
+  const isDev = await adminStore.isDev()
+  if (!isDev) {
+    next({ name: 'notfound' })
+  }
+
+  return next()
 })
 
 export default router

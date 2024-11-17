@@ -48,7 +48,6 @@ const handleClickCard = (idBook) => {
 
 const handleClickProduct = async (record) => {
   trackStore.setRecord(record)
-  console.log(record._id)
 }
 
 function formatDate(date) {

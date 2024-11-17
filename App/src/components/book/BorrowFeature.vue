@@ -35,7 +35,6 @@ const handleConfirm = async () => {
       life: 3000
     })
   }
-  // console.log(trackId.value)
 }
 </script>
 

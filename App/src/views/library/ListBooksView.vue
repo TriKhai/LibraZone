@@ -43,7 +43,6 @@ const totalRecords = computed(() => products.value.length)
 const paginatedProducts = computed(() => {
   const start = first.value
   const end = start + rows.value // Không cần Math.min vì Paginator đã giới hạn trang
-  // console.log(products.slice(start, end))
   return products.value.slice(start, end)
 })
 
@@ -51,7 +50,6 @@ const paginatedProducts = computed(() => {
 const onPageChange = (event) => {
   first.value = event.first // Cập nhật chỉ mục phần tử đầu tiên
   rows.value = event.rows // Cập nhật số sản phẩm mỗi trang
-  console.log(rows.value)
 }
 </script>
 

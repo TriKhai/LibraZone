@@ -13,8 +13,8 @@ const props = defineProps({
 const trackStore = useTrackStore()
 const { bookId } = toRefs(props)
 const handleBorrow = async () => {
-  try {
-    await trackStore.createBorrowAction(bookId.value)
+  const res = await trackStore.createBorrowAction(bookId.value)
+  if (res) {
     toast.add({
       severity: 'contrast',
       summary: 'Success',
@@ -22,7 +22,7 @@ const handleBorrow = async () => {
       detail: 'Book added successfully',
       life: 3000
     })
-  } catch (error) {
+  } else {
     toast.add({
       severity: 'error',
       summary: 'Error',
@@ -30,7 +30,6 @@ const handleBorrow = async () => {
       detail: 'The book is already in the cart.',
       life: 3000
     })
-    console.log(error)
   }
 }
 </script>

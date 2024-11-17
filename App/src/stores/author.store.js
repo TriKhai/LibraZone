@@ -16,7 +16,7 @@ export const useAuthorStore = defineStore('authors', {
       try {
         this.authorList = await AuthorServiceApi.getAuthors()
       } catch (err) {
-        console.error('Get authors failed:', err.message)
+        console.log('Get authors failed:', err.message)
       }
     },
     async createAuthorAction(payload) {
@@ -25,7 +25,7 @@ export const useAuthorStore = defineStore('authors', {
         await this.fetchAuthorAction()
         return res
       } catch (err) {
-        console.error('Create author failed:', err.message)
+        console.log('Create author failed:', err.message)
       }
     },
     async deleteAuthorAction(id) {
@@ -34,7 +34,7 @@ export const useAuthorStore = defineStore('authors', {
         await this.fetchAuthorAction()
         return res
       } catch (err) {
-        console.error('Delete author failed:', err.message)
+        console.log('Delete author failed:', err.message)
       }
     },
     async updateAuthorAction(id, data) {

@@ -68,7 +68,6 @@ const handleSubmit = async () => {
 
   try {
     const response = await userStore.changePassword(passwordData)
-    console.log(response)
     if (response.status === 200) {
       proxy.$toast.add({
         severity: 'contrast',

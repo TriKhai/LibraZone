@@ -103,9 +103,7 @@ const handleSubmit = async () => {
     for (const key in dataUser) {
       formData.append(key, dataUser[key])
     }
-    // console.log(formData)
     const res = await userStore.editProfileUser(user.value._id, formData)
-    // console.log(res)
 
     if (res) {
       proxy.$toast.add({
@@ -118,7 +116,7 @@ const handleSubmit = async () => {
     }
     props.handleClose()
   } catch (error) {
-    console.error('Error adding book:', error)
+    console.log('Error adding book:', error)
     proxy.$toast.add({
       severity: 'error',
       summary: 'Error',

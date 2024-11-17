@@ -83,7 +83,7 @@ const handleSubmit = async () => {
       props.handleClose()
     }
   } catch (error) {
-    console.error('Error adding book:', error)
+    console.log('Error adding book:', error)
     alert('Failed to add author. Please try again.')
   }
 }

@@ -149,7 +149,7 @@ const handleSubmit = async () => {
         formData.append(key, dataBook[key])
       }
     }
-    // console.log(formData)
+
     const res = await bookStore.updateBookAction(book.value._id, formData)
     if (res.status === 200) {
       proxy?.$toast?.add({
@@ -161,10 +161,8 @@ const handleSubmit = async () => {
       })
       props.handleClose()
     }
-
-    // console.log(res)
   } catch (error) {
-    console.error('Error adding book:', error)
+    console.log('Error adding book:', error)
     proxy?.$toast?.add({
       severity: 'error',
       group: 'tr',

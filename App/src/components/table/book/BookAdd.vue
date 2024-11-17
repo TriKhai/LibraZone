@@ -141,8 +141,6 @@ const publisherList = computed(() => {
   return publisherStore.publishers
 })
 
-console.log(publisherList)
-
 const dataBook = reactive({
   title: '',
   genre: [],
@@ -204,9 +202,7 @@ const handleSubmit = async () => {
         formData.append(key, dataBook[key])
       }
     }
-    // console.log(formData)
     const res = await bookStore.createBookAction(formData)
-    // console.log(res)
     if (res) {
       proxy?.$toast?.add({
         severity: 'contrast',
@@ -218,7 +214,7 @@ const handleSubmit = async () => {
       props.handleClose()
     }
   } catch (error) {
-    console.error('Error adding book:', error)
+    console.log('Error adding book:', error)
     alert('Failed to add book. Please try again.')
   }
 }
