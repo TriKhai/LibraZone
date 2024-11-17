@@ -15,6 +15,19 @@
         <li class="nav-item d-flex justify-content-center align-items-center">
           <router-link
             class="nav__link w-100 text-center"
+            :class="{ active: $route.name === 'borrow-book' }"
+            :to="{ name: 'borrow-book' }"
+            @click="handleClose()"
+          >
+            <i class="bi bi-book me-2"></i> Track
+          </router-link>
+        </li>
+        <li
+          v-if="admin.position === 'Dev'"
+          class="nav-item d-flex justify-content-center align-items-center"
+        >
+          <router-link
+            class="nav__link w-100 text-center"
             :class="{ active: $route.name === 'user-table' }"
             :to="{ name: 'user-table' }"
             @click="handleClose()"
@@ -22,7 +35,10 @@
             <i class="bi bi-book me-2"></i> Users
           </router-link>
         </li>
-        <li class="nav-item d-flex justify-content-center align-items-center">
+        <li
+          v-if="admin.position === 'Dev'"
+          class="nav-item d-flex justify-content-center align-items-center"
+        >
           <router-link
             class="nav__link w-100 text-center"
             :class="{ active: $route.name === 'book-table' }"
@@ -32,7 +48,10 @@
             <i class="bi bi-book me-2"></i> Books
           </router-link>
         </li>
-        <li class="nav-item d-flex justify-content-center align-items-center">
+        <li
+          v-if="admin.position === 'Dev'"
+          class="nav-item d-flex justify-content-center align-items-center"
+        >
           <router-link
             class="nav__link w-100 text-center"
             :class="{ active: $route.name === 'author-table' }"
@@ -42,7 +61,10 @@
             <i class="bi bi-book me-2"></i> Authors
           </router-link>
         </li>
-        <li class="nav-item d-flex justify-content-center align-items-center">
+        <li
+          v-if="admin.position === 'Dev'"
+          class="nav-item d-flex justify-content-center align-items-center"
+        >
           <router-link
             class="nav__link w-100 text-center"
             :class="{ active: $route.name === 'publisher-table' }"
@@ -52,25 +74,28 @@
             <i class="bi bi-book me-2"></i> Publisher
           </router-link>
         </li>
-        <li class="nav-item d-flex justify-content-center align-items-center">
-          <router-link
-            class="nav__link w-100 text-center"
-            :class="{ active: $route.name === 'borrow-book' }"
-            :to="{ name: 'borrow-book' }"
-            @click="handleClose()"
-          >
-            <i class="bi bi-book me-2"></i> Track
-          </router-link>
-        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useAdminStore } from '@/stores/admin.store'
+import { computed, onMounted } from 'vue'
+
 defineProps({
   handleClose: {
     type: Function
+  }
+})
+
+const adminStore = useAdminStore()
+
+const admin = computed(() => adminStore.getAdmin)
+
+onMounted(async () => {
+  if (!admin.value || Object.keys(admin.value).length === 0) {
+    await adminStore.fetchAdmin()
   }
 })
 </script>
