@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="mb-3 mx-2">
-            <p>Label</p>
+            <p class="fw-bold">Label</p>
             <div v-for="(label, index) in labels" :key="index">
               <input
                 class="form-check-input"
@@ -107,7 +107,7 @@
             <input type="file" name="avatar" id="imageBook" @change="handleFileUpload" />
           </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-4 submit__form">Add book</button>
+        <button type="submit" class="btn btn-dark mt-4 submit__form">Add book</button>
       </form>
     </div>
   </div>

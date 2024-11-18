@@ -8,20 +8,20 @@
       <form class="" enctype="multipart/form-data" @submit.prevent="handleSubmit">
         <div class="add__form">
           <div class="mb-3 mx-2">
-            <label for="titleBook" class="form-label">Name</label>
+            <label for="titleBook" class="form-label fw-bold">Name</label>
             <input type="text" class="form-control" id="titleBook" v-model="dataPublisher.name" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="languageBook" class="form-label">Location</label>
+            <label for="languageBook" class="form-label fw-bold">Location</label>
             <input type="text" class="form-control" v-model="dataPublisher.location" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="languageBook" class="form-label">Established Year</label>
+            <label for="languageBook" class="form-label fw-bold">Established Year</label>
             <input type="text" class="form-control" v-model="dataPublisher.establishedYear" />
           </div>
 
           <div class="mb-3 mx-2">
-            <label for="priceBook" class="form-label">Email</label>
+            <label for="priceBook" class="form-label fw-bold">Email</label>
             <input
               type="text"
               class="form-control"
@@ -30,7 +30,7 @@
             />
           </div>
           <div class="mb-3 mx-2">
-            <label for="priceBook" class="form-label">Phone</label>
+            <label for="priceBook" class="form-label fw-bold">Phone</label>
             <input
               type="text"
               class="form-control"
@@ -39,7 +39,7 @@
             />
           </div>
           <div class="mb-3 mx-2">
-            <label for="priceBook" class="form-label">Website</label>
+            <label for="priceBook" class="form-label fw-bold">Website</label>
             <input
               type="text"
               class="form-control"
@@ -49,11 +49,11 @@
           </div>
 
           <div class="mb-3 mx-2">
-            <label for="imageBook" class="form-label">Images</label>
+            <label for="imageBook" class="form-label fw-bold">Images</label>
             <input type="file" name="avatar" id="imageBook" @change="handleFileUpload" />
           </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-4 submit__form">Submit</button>
+        <button type="submit" class="btn btn-dark mt-4 submit__form">Submit</button>
       </form>
     </div>
   </div>

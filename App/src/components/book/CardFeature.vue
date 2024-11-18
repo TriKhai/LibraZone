@@ -40,11 +40,17 @@
           </div>
         </div>
       </div>
-      <div class="product__feature mt-3 mx-2 d-flex" v-else>
+
+      <div class="product__feature mt-3 mx-2 d-flex" v-else-if="record.state === 'Waiting'">
         <div><strong class="me-2">State:</strong> {{ record.state }}</div>
+
         <div class="ms-3" v-if="record.state === 'Waiting'">
           <button class="w-100" @click="handleCancel(record._id)">Cancel</button>
         </div>
+      </div>
+
+      <div class="ms-1" v-else>
+        <div><strong class="">Due:</strong> {{ formatDate(record.dueDate) }}</div>
       </div>
     </div>
   </div>

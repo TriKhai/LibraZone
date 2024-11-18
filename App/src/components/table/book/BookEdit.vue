@@ -1,31 +1,33 @@
 <template>
   <div class="p-4 form__wrap">
     <div class="addForm__title">
-      <h3>Add Book</h3>
+      <h3>Edit Book</h3>
       <hr />
     </div>
     <div class="">
       <form class="" enctype="multipart/form-data" @submit.prevent="handleSubmit">
         <div class="add__form">
           <div class="mb-3 mx-2">
-            <label for="titleBook" class="form-label">Title</label>
+            <label for="titleBook" class="form-label fw-bold">Title</label>
             <input type="text" class="form-control" id="titleBook" v-model="dataBook.title" />
           </div>
           <div class="mb-3 mx-2">
-            <p>Genres</p>
-            <div v-for="(genre, index) in genres" :key="index">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                :value="genre"
-                v-model="dataBook.genre"
-              />
-              <label class="form-check-label"> {{ genre }} </label>
+            <p class="fw-bold">Genres</p>
+            <div class="row">
+              <div class="col-4" v-for="(genre, index) in genres" :key="index">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  :value="genre"
+                  v-model="dataBook.genre"
+                />
+                <label class="form-check-label"> {{ genre }} </label>
+              </div>
             </div>
           </div>
 
           <div class="mb-3 mx-2">
-            <p>Label</p>
+            <p class="fw-bold">Label</p>
             <div v-for="(label, index) in labels" :key="index">
               <input
                 class="form-check-input"
@@ -38,8 +40,8 @@
             </div>
           </div>
 
-          <div class="mb-3 mx-2">
-            <label for="detailBook" class="form-label">Description</label>
+          <div class="mb-3 mx-2 d-flex flex-column">
+            <label for="detailBook" class="form-label fw-bold">Description</label>
             <textarea
               id="detailBook"
               name="detailBook"
@@ -49,23 +51,23 @@
             ></textarea>
           </div>
           <div class="mb-3 mx-2">
-            <label for="priceBook" class="form-label">Price</label>
+            <label for="priceBook" class="form-label fw-bold">Price</label>
             <input type="text" class="form-control" id="priceBook" v-model="dataBook.price" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="stockBook" class="form-label">Stock</label>
+            <label for="stockBook" class="form-label fw-bold">Stock</label>
             <input type="text" class="form-control" id="stockBook" v-model="dataBook.stock" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="countryBook" class="form-label">Country</label>
+            <label for="countryBook" class="form-label fw-bold">Country</label>
             <input type="text" class="form-control" id="countryBook" v-model="dataBook.country" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="languageBook" class="form-label">Language</label>
+            <label for="languageBook" class="form-label fw-bold">Language</label>
             <input type="text" class="form-control" id="languageBook" v-model="dataBook.language" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="languageBook" class="form-label">Publish Date</label>
+            <label for="languageBook" class="form-label fw-bold">Publish Date</label>
             <input
               type="date"
               class="form-control"
@@ -74,7 +76,7 @@
             />
           </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-4 submit__form">Submit</button>
+        <button type="submit" class="btn btn-dark mt-4 submit__form">Submit</button>
       </form>
     </div>
   </div>

@@ -1,40 +1,40 @@
 <template>
   <div class="p-4 form__wrap">
     <div class="addForm__title">
-      <h3>Add Publisher</h3>
+      <h3>Add User</h3>
       <hr />
     </div>
     <div class="">
       <form class="" enctype="multipart/form-data" @submit.prevent="handleSubmit">
         <div class="add__form">
           <div class="mb-3 mx-2">
-            <label for="fnUser" class="form-label">First Name</label>
+            <label for="fnUser" class="form-label fw-bold">First Name</label>
             <input type="text" id="fnUser" class="form-control" v-model="dataUser.firstName" />
           </div>
 
           <div class="mb-3 mx-2">
-            <label for="lnUser" class="form-label">Last Name</label>
+            <label for="lnUser" class="form-label fw-bold">Last Name</label>
             <input type="text" class="form-control" id="lnUser" v-model="dataUser.lastName" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="email" class="form-label">Email</label>
+            <label for="email" class="form-label fw-bold">Email</label>
             <input type="email" id="email" class="form-control" v-model="dataUser.email" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="phone" class="form-label">Phone</label>
+            <label for="phone" class="form-label fw-bold">Phone</label>
             <input type="text" class="form-control" id="phone" v-model="dataUser.phone" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="pwd" class="form-label">Password</label>
+            <label for="pwd" class="form-label fw-bold">Password</label>
             <input type="password" class="form-control" v-model="dataUser.password" id="pwd" />
           </div>
 
           <div class="mb-3 mx-2">
-            <label for="addressUser" class="form-label">Address</label>
+            <label for="addressUser" class="form-label fw-bold">Address</label>
             <input type="text" class="form-control" id="addressUser" v-model="dataUser.address" />
           </div>
           <div class="gender__form mb-2">
-            <label for="" class="form-label me-3 fw-bold">Gender: </label>
+            <label for="" class="form-label me-3 fw-bold fw-bold">Gender: </label>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
@@ -45,7 +45,7 @@
                 checked
                 v-model="dataUser.gender"
               />
-              <label class="form-check-label" for="inlineRadio1">Male</label>
+              <label class="form-check-label" for="inlineRadio1 ">Male</label>
             </div>
             <div class="form-check form-check-inline">
               <input
@@ -71,12 +71,12 @@
             </div>
           </div>
           <div class="mb-3 mx-2">
-            <label for="dobUser" class="form-label">Date of birth</label>
+            <label for="dobUser" class="form-label fw-bold">Date of birth</label>
             <input type="date" class="form-control" id="dobUser" v-model="dataUser.dateOfBirth" />
           </div>
 
-          <div class="mb-3 mx-2">
-            <label for="bioUser" class="form-label">Bio</label>
+          <div class="mb-3 mx-2 d-flex flex-column">
+            <label for="bioUser" class="form-label fw-bold">Bio</label>
             <textarea
               id="detailBook"
               name="detailBook"
@@ -116,12 +116,12 @@
 
           <div class="form__admin" v-if="dataUser.role === 'admin'">
             <div class="mb-3 mx-2">
-              <label for="lnUser" class="form-label">Hire Date</label>
+              <label for="lnUser" class="form-label fw-bold">Hire Date</label>
               <input type="date" class="form-control" id="lnUser" v-model="dataUser.hireDate" />
             </div>
 
             <div class="mb-3 mx-2">
-              <label for="lnUser" class="form-label">Salary</label>
+              <label for="lnUser" class="form-label fw-bold">Salary</label>
               <input
                 type="number"
                 class="form-control"
@@ -131,7 +131,7 @@
               />
             </div>
             <div class="mb-3 mx-2">
-              <label for="lnUser" class="form-label">Position</label>
+              <label for="lnUser" class="form-label fw-bold">Position</label>
               <input type="text" class="form-control" id="lnUser" v-model="dataUser.position" />
             </div>
           </div>

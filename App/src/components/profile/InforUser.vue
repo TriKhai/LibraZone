@@ -36,7 +36,7 @@
 
           <div class="detail-item">
             <label>Bio: </label>
-            <span>{{ user.bio || 'No bio available' }}</span>
+            <span class="fst-italic">{{ user.bio || 'No bio available' }}</span>
           </div>
         </div>
 
@@ -167,10 +167,11 @@ function formatNumber(number) {
   color: #334155;
 }
 .detail-item label {
-  margin-right: 3px;
+  margin-right: 6px;
   font-weight: bold;
   color: #334155;
 }
+
 .feature__user button {
   border-radius: 8px;
   border: 1px solid #c8c8c8;

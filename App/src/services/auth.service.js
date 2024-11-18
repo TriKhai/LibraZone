@@ -35,7 +35,7 @@ class AuthServiceApi {
       }
 
       if (res.status !== 200) throw new Error('Faild to log in')
-      return user
+      return res
     } catch (error) {
       console.log(error.message)
       throw error

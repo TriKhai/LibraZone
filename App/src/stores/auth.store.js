@@ -29,9 +29,11 @@ export const useAuthStore = defineStore('auth', {
     async logInAction(payload) {
       try {
         const user = await AuthServiceApi.logIn(payload)
-        this.userLogIn = user
+        this.userLogIn = user.data
+        return user.status
       } catch (error) {
         console.log('Lỗi đăng nhập:', error.message)
+        throw error
       }
     },
 

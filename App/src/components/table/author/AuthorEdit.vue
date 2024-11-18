@@ -8,15 +8,15 @@
       <form class="" enctype="multipart/form-data" @submit.prevent="handleSubmit">
         <div class="add__form">
           <div class="mb-3 mx-2">
-            <label for="nameAuthor" class="form-label">Name</label>
+            <label for="nameAuthor" class="form-label fw-bold">Name</label>
             <input type="text" class="form-control" id="nameAuthor" v-model="dataAuthor.name" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="languageBook" class="form-label">Date of birth</label>
+            <label for="languageBook" class="form-label fw-bold">Date of birth</label>
             <input type="date" class="form-control" id="languageBook" v-model="dataAuthor.dob" />
           </div>
-          <div class="mb-3 mx-2">
-            <label for="detailBook" class="form-label">Description</label>
+          <div class="mb-3 mx-2 d-flex flex-column">
+            <label for="detailBook" class="form-label fw-bold">Description</label>
             <textarea
               id="detailBook"
               name="detailBook"
@@ -26,11 +26,11 @@
             ></textarea>
           </div>
           <div class="mb-3 mx-2">
-            <label for="priceBook" class="form-label">Link website</label>
+            <label for="priceBook" class="form-label fw-bold">Link website</label>
             <input type="url" class="form-control" id="priceBook" v-model="dataAuthor.link" />
           </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-4 submit__form">Submit</button>
+        <button type="submit" class="btn btn-dark mt-4 submit__form">Submit</button>
       </form>
     </div>
   </div>

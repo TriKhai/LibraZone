@@ -70,14 +70,17 @@ const handleLogin = async () => {
   }
 
   try {
-    await storeAuth.logInAction(user)
-    proxy.$toast.add({
-      severity: 'contrast',
-      group: 'br',
-      summary: 'Success',
-      detail: 'Log in successfully',
-      life: 3000
-    })
+    const statusUser = await storeAuth.logInAction(user)
+    console.log(statusUser)
+    if (statusUser === 200) {
+      proxy.$toast.add({
+        severity: 'contrast',
+        group: 'br',
+        summary: 'Success',
+        detail: 'Log in successfully',
+        life: 3000
+      })
+    }
   } catch (error) {
     console.log(error.message)
     proxy.$toast.add({

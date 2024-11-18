@@ -8,19 +8,19 @@
       <form class="" enctype="multipart/form-data" @submit.prevent="handleSubmit">
         <div class="add__form">
           <div class="mb-3 mx-2">
-            <label for="firstName" class="form-label">First Name</label>
+            <label for="firstName" class="form-label fw-bold">First Name</label>
             <input type="text" class="form-control" id="firstName" v-model="dataUser.firstName" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="lastName" class="form-label">Last Name</label>
+            <label for="lastName" class="form-label fw-bold">Last Name</label>
             <input type="text" class="form-control" id="lastName" v-model="dataUser.lastName" />
           </div>
           <div class="mb-3 mx-2">
-            <label for="numberPhone" class="form-label">Number Phone</label>
+            <label for="numberPhone" class="form-label fw-bold">Number Phone</label>
             <input type="text" class="form-control" id="numberPhone" v-model="dataUser.phone" />
           </div>
           <div class="mb-3 mx-2">
-            <label class="form-label">Gender</label>
+            <label class="form-label fw-bold">Gender</label>
             <div class="form-check">
               <input
                 type="radio"
@@ -56,19 +56,19 @@
             </div>
           </div>
           <div class="mb-3 mx-2">
-            <label for="dob" class="form-label">Date of birth</label>
+            <label for="dob" class="form-label fw-bold">Date of birth</label>
             <input type="date" class="form-control" id="dob" v-model="dataUser.dateOfBirth" />
           </div>
-          <div class="mb-3 mx-2">
-            <label for="bio" class="form-label">Bio</label>
+          <div class="mb-3 mx-2 d-flex flex-column">
+            <label for="bio" class="form-label fw-bold">Bio</label>
             <textarea id="bio" name="bio" rows="4" cols="50" v-model="dataUser.bio"></textarea>
           </div>
           <div class="mb-3 mx-2">
-            <label for="addressUser" class="form-label">Address</label>
+            <label for="addressUser" class="form-label fw-bold">Address</label>
             <input type="text" class="form-control" id="addressUser" v-model="dataUser.address" />
           </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-4 submit__form">Submit</button>
+        <button type="submit" class="btn btn-dark mt-4 submit__form">Submit</button>
       </form>
     </div>
   </div>

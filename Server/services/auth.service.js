@@ -6,6 +6,7 @@ require("dotenv").config();
 
 const IMAGE_BASE_PATH = process.env.IMAGE_BASE_PATH;
 const SECRET_KEY = process.env.SECRETKEY;
+const IMAGE_DEFAULT_PATH = process.env.IMAGE_DEFAULT_PATH;
 
 class AuthService {
   async encryptPassword(plainPassword) {
@@ -106,8 +107,7 @@ class AuthService {
 
     const newPassword = await this.encryptPassword(signupPayload.password);
     signupPayload.password = newPassword;
-    signupPayload.image =
-      IMAGE_BASE_PATH + `/public/data/uploads/avatar/default-avatar.jpg`;
+    signupPayload.image = IMAGE_BASE_PATH + IMAGE_DEFAULT_PATH;
 
     const newUser = new models.User(signupPayload);
     await newUser.save();
