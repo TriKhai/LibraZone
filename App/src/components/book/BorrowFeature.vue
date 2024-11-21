@@ -18,15 +18,26 @@ const trackStore = useTrackStore()
 const { trackId, quantity } = toRefs(props)
 const handleConfirm = async () => {
   try {
-    await trackStore.confirmBorrowBook(trackId.value, quantity.value)
-    toast.add({
-      severity: 'contrast',
-      summary: 'Success',
-      group: 'tr',
-      detail: 'The book is waiting approval.',
-      life: 3000
-    })
+    const res = await trackStore.confirmBorrowBook(trackId.value, quantity.value)
+    if (res) {
+      toast.add({
+        severity: 'contrast',
+        summary: 'Success',
+        group: 'tr',
+        detail: 'The book is waiting approval.',
+        life: 3000
+      })
+    } else {
+      toast.add({
+        severity: 'error',
+        summary: 'Error',
+        group: 'tr',
+        detail: 'Exceeded quantity',
+        life: 3000
+      })
+    }
   } catch (error) {
+    console.log(error)
     toast.add({
       severity: 'error',
       summary: 'Error',

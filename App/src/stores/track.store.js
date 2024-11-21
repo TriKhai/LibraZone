@@ -65,11 +65,13 @@ export const useTrackStore = defineStore('track', {
     },
     async confirmBorrowBook(trackId, quantity) {
       try {
-        await TrackServiceApi.confirm(trackId, quantity)
+        const res = await TrackServiceApi.confirm(trackId, quantity)
+        console.log('Hello')
         await this.fetchBorrowedBooks()
         await this.$patch({
           record: null
         })
+        return res
       } catch (error) {
         console.log(error)
       }
